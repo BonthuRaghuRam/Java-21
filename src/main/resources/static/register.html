@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h2>Register</h2>
+<input type="text" id="username" placeholder="Username"><br>
+<input type="password" id="password" placeholder="Password"><br>
+<input type="text" id="role" placeholder="Role (optional)"><br>
+<button id="registerBtn">Register</button>
+
+<script>
+    $('#registerBtn').click(function () {
+        $.ajax({
+            url: '/api/register',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                username: $('#username').val(),
+                password: $('#password').val(),
+                role: $('#role').val()
+            }),
+            success: function (res) {
+                alert(res);
+            },
+            error: function (err) {
+                alert('Error: ' + err.responseText);
+            }
+        });
+    });
+</script>
+</body>
+</html>
